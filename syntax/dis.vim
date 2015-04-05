@@ -31,7 +31,7 @@ syn match disSection    " \.[a-z][a-z_\.-]*:"he=e-1
 syn match disSection    "@[a-z0-9_][a-z0-9_-]\+"hs=s+1 contains=disAt,disNumber
 
 syn match disLabel      "<[a-z0-9_.][a-z0-9_.@+-]\+>"hs=s+1,he=e-1 contains=disNumber,disSection
-syn match disHexDump    ":\t\([0-9a-f][0-9a-f] \)\+"hs=s+1
+syn match disHexDump    ":\t\([0-9a-f][0-9a-f][ \t]\)\+"hs=s+1
 
 syn match disError      "<internal disassembler error>"
 syn match disError      "(bad)"
@@ -40,6 +40,7 @@ syn keyword disTodo     contained TODO
 
 syn region disComment   start="/\*" end="\*/" contains=disTodo
 syn match disComment    "[#;!|].*" contains=disLabel,disTodo
+syn match disStatement  "//.*" contains=cStatement
 
 syn match disSpecial    display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
 syn region disString    start=+"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=disSpecial
@@ -85,7 +86,8 @@ if version >= 508 || !exists("did_dis_syntax_inits")
   HiLink disString      String
   " Identifier: Function
   HiLink disHexDump     Identifier
-  "Statement: Conditional, Repeat, Label, Operator, Keyword, Exception
+  " Statement: Conditional, Repeat, Label, Operator, Keyword, Exception
+  HiLink disStatement	Statement
   HiLink disLabel       Label
   " PreProc: Include, Define, Macro, PreCondit
   HiLink disData        Define

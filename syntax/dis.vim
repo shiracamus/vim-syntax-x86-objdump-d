@@ -30,7 +30,7 @@ syn match disAt         "@"
 syn match disSection    " \.[a-z][a-z_\.-]*:"he=e-1
 syn match disSection    "@[a-z0-9_][a-z0-9_-]\+"hs=s+1 contains=disAt,disNumber
 
-syn match disLabel      "<[a-z0-9_.][a-z0-9_.@+-]\+>"hs=s+1,he=e-1 contains=disNumber,disSection
+syn match disLabel      "<[a-z0-9_.][a-z0-9_.@+-]\+>"hs=s+1,he=e-1 contains=disSection
 syn match disHexDump    ":\t\([0-9a-f][0-9a-f][ \t]\)\+"hs=s+1
 
 syn match disError      "<internal disassembler error>"
